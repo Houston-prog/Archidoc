@@ -32,7 +32,7 @@ class JournalController extends Controller
         if (Auth::check()) {
             // filter based on from fields
             if ($request->has('description') && $description) {
-                $query->where('description', 'like', '%' . $description . '%');
+                $query->whereRaw('LOWER(description) LIKE ?', ['%' . mb_strtolower($description) . '%']);
             }
 
             if ($request->has('typearchive') && $typearchive) {
