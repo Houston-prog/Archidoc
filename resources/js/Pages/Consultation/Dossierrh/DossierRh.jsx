@@ -120,14 +120,14 @@ export default function DossierRh({ stats, worstDossiers, recentUsers }) {
                     {/* Stats Cards */}
                     <div className="grid grid-cols-1 py-6 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <StatCard icon={Users} label="Total Personnel" value={stats.totalUsers} />
+                        <StatCard icon={ShieldCheck} label="Dossiers à jour" value={stats.completeDossiersCount} />
+                        <StatCard icon={AlertTriangle} label="Incomplets" value={stats.incompleteDossiersCount} />
                         <StatCard
                             icon={PieChart}
                             label="Conformité"
                             value={`${stats.complianceRate}%`}
                             subtitle="globale"
                         />
-                        <StatCard icon={ShieldCheck} label="Dossiers à jour" value={stats.completeDossiersCount} />
-                        <StatCard icon={AlertTriangle} label="Incomplets" value={stats.incompleteDossiersCount} />
                     </div>
 
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
@@ -136,7 +136,7 @@ export default function DossierRh({ stats, worstDossiers, recentUsers }) {
                     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
                         <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
                             <h3 className="font-bold text-gray-800 flex items-center gap-2">
-                                <Bell className="text-amber-500" size={20} /> Dossiers prioritaires
+                                <Bell className="text-amber-500" size={20} /> Dossiers Incomplets
                             </h3>
                         </div>
                         <div className="p-6 flex-1">

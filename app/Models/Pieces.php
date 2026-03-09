@@ -15,6 +15,7 @@ class Pieces extends Model
     protected $fillable = [
         'name',
         'description',
+        'status',
     ];
 
     public function docrhs()

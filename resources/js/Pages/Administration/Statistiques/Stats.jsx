@@ -1,7 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import SidebarAdmin from '../SidebarAdmin';
 import React, { useMemo, useEffect } from "react";
-import { Pie, PieChart } from "recharts";
+import { Pie, PieChart, Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import { router } from '@inertiajs/react';
 import {
   Card,
@@ -18,11 +18,11 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-export default function Stats({ diskStats, totalSpace, totalDocarchives, totalTypedocs, totalDPA, totalDossierPersonnel }) {
+export default function Stats({ diskStats, totalSpace, totalDocarchives, totalTypedocs, totalDPA, totalDossierPersonnel, userActivity = [] }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      router.reload({ only: ['diskStats', 'totalSpace', 'totalDocarchives', 'totalTypedocs', 'totalDPA', 'totalDossierPersonnel'], preserveScroll: true, preserveState: true });
+      router.reload({ only: ['diskStats', 'totalSpace', 'totalDocarchives', 'totalTypedocs', 'totalDPA', 'totalDossierPersonnel', 'userActivity'], preserveScroll: true, preserveState: true });
     }, 5000); // Recharger toutes les 5 secondes
 
     return () => clearInterval(interval);
@@ -41,6 +41,13 @@ export default function Stats({ diskStats, totalSpace, totalDocarchives, totalTy
     },
     free: {
       label: "Libre",
+      color: "hsl(var(--chart-1))",
+    },
+  };
+
+  const activityConfig = {
+    activity: {
+      label: "Activité",
       color: "hsl(var(--chart-1))",
     },
   };
@@ -127,6 +134,30 @@ export default function Stats({ diskStats, totalSpace, totalDocarchives, totalTy
                                 </CardContent>
                             </Card>
                         </div>
+                    </div>
+
+                    <div className="mt-4">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Activité des utilisateurs</CardTitle>
+                                <CardDescription>Nombre d'actions par utilisateur</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <ChartContainer config={activityConfig} className="min-h-[300px] w-full">
+                                    <BarChart accessibilityLayer data={userActivity}>
+                                        <CartesianGrid vertical={false} />
+                                        <XAxis
+                                            dataKey="name"
+                                            tickLine={false}
+                                            tickMargin={10}
+                                            axisLine={false}
+                                        />
+                                        <ChartTooltip content={<ChartTooltipContent />} />
+                                        <Bar dataKey="activity" fill="var(--color-activity)" radius={4} />
+                                    </BarChart>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
                     </div>
                 </div>
             </div>

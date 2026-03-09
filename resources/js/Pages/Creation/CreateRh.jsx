@@ -12,6 +12,11 @@ export default function CreateRh({ availablePieces }) {
         pieceFiles: {},     // Format: { id: [File, File] }
     });
 
+    // Filtrage des pieces par status
+    const pieceOblig = availablePieces.filter((piece) => piece.status === 'Obligatoire');
+
+    const pieceOption = availablePieces.filter((piece) => piece.status === 'Optionnelle');
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -83,12 +88,19 @@ export default function CreateRh({ availablePieces }) {
                             {/* Pièces Jointes */}
                             <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-8 overflow-hidden">
                                 <div className="bg-gray-50 px-6 py-4 border-b">
-                                    <h3 className="text-lg font-bold text-gray-800">Constitution du dossier</h3>
+                                    <h3 className="text-lg font-bold text-blue-800">Constitution du dossier</h3>
+                                </div>
+
+                                <div className="bg-gray-100 px-6 py-4 border-b">
+                                    <h3 className="text-lg font-bold text-gray-800">
+                                        Pièces obligatoires
+                                    </h3>
                                 </div>
                                 <div className="p-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                        {availablePieces.map((piece) => (
+                                        {pieceOblig.map((piece) => (
                                             <div key={piece.id} className={`border rounded-lg p-4 transition-colors ${data.selectedPieces[piece.id] ? 'border-blue-300 bg-blue-50' : 'border-gray-200 bg-gray-50'}`}>
+
                                                 <label className="flex items-start gap-3 cursor-pointer">
                                                     <input
                                                         type="checkbox"
@@ -127,6 +139,58 @@ export default function CreateRh({ availablePieces }) {
                                             </div>
                                         ))}
                                     </div>
+
+                                </div>
+                                <div className="bg-gray-100 px-6 py-4 border-b">
+                                    <h3 className="text-lg font-bold text-gray-800">
+                                        Pièces optionnelles
+                                    </h3>
+                                </div>
+
+                                <div className="p-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                        {pieceOption.map((piece) => (
+                                            <div key={piece.id} className={`border rounded-lg p-4 transition-colors ${data.selectedPieces[piece.id] ? 'border-blue-300 bg-blue-50' : 'border-gray-200 bg-gray-50'}`}>
+
+                                                <label className="flex items-start gap-3 cursor-pointer">
+                                                    <input
+                                                        type="checkbox"
+                                                        onChange={() => togglePiece(piece.id)}
+                                                        className="mt-1 rounded border-gray-300 text-blue-600"
+                                                    />
+                                                    <div>
+                                                        <h4 className="text-sm font-semibold">{piece.name}</h4>
+                                                        <p className="text-xs text-gray-500">{piece.description}</p>
+                                                    </div>
+                                                </label>
+
+                                                {data.selectedPieces[piece.id] && (
+                                                    <div className="mt-3 pt-3 border-t border-blue-200 border-dashed">
+                                                        <label className="cursor-pointer text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center gap-2 bg-white px-3 py-2 rounded border border-blue-200 shadow-sm w-max">
+                                                            <span>📁 Importer</span>
+                                                            <input
+                                                                type="file"
+                                                                className="hidden"
+                                                                multiple
+                                                                onChange={e => handleFileChange(piece.id, e.target.files)}
+                                                            />
+                                                        </label>
+
+                                                        {data.pieceFiles[piece.id] && (
+                                                            <ul className="mt-2">
+                                                                {data.pieceFiles[piece.id].map((file, idx) => (
+                                                                    <li key={idx} className="text-xs text-gray-600 truncate">
+                                                                        📄 {file.name}
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+
                                 </div>
                             </div>
 

@@ -20,7 +20,7 @@ export default function SidebarAdmin() {
                         <span className="inline-flex justify-center items-center ml-4">
                             <HomeIcon size={15} />
                         </span>
-                        <span className="ml-2 text-sm tracking-wide truncate">
+                        <span className="ml-2 text-sm font-semibold tracking-wide truncate">
                             Accueil
                         </span>
                     </Link>
@@ -28,7 +28,7 @@ export default function SidebarAdmin() {
                         <span className="inline-flex justify-center items-center ml-4">
                             <ShieldAlert size={15} />
                         </span>
-                        <span className="ml-2 text-sm tracking-wide truncate">
+                        <span className="ml-2 text-sm font-semibold tracking-wide truncate">
                             Mot de passe oubli&eacute;
                         </span>
                     </Link>
@@ -36,7 +36,7 @@ export default function SidebarAdmin() {
                         <span className="inline-flex justify-center items-center ml-4">
                             <Fingerprint size={15} />
                         </span>
-                        <span className="ml-2 text-sm tracking-wide truncate">
+                        <span className="ml-2 text-sm font-semibold tracking-wide truncate">
                             Connexion suspecte
                         </span>
                     </Link>
@@ -44,7 +44,7 @@ export default function SidebarAdmin() {
                         <span className="inline-flex justify-center items-center ml-4">
                             <ChartLineIcon size={15} />
                         </span>
-                        <span className="ml-2 text-sm tracking-wide truncate">
+                        <span className="ml-2 text-sm font-semibold tracking-wide truncate">
                             Statistique
                         </span>
                     </Link>
@@ -52,7 +52,7 @@ export default function SidebarAdmin() {
                         <span className="inline-flex justify-center items-center ml-4">
                             <ScrollTextIcon size={15} />
                         </span>
-                        <span className="ml-2 text-sm tracking-wide truncate">
+                        <span className="ml-2 text-sm font-semibold tracking-wide truncate">
                             Journal
                         </span>
                     </Link>
@@ -60,7 +60,7 @@ export default function SidebarAdmin() {
                         <span className="inline-flex justify-center items-center ml-4">
                             <Users size={15} />
                         </span>
-                        <span className="ml-2 text-sm tracking-wide truncate">
+                        <span className="ml-2 text-sm font-semibold tracking-wide truncate">
                             Compte utilisateur
                         </span>
                     </Link>
@@ -68,7 +68,7 @@ export default function SidebarAdmin() {
                         <span className="inline-flex justify-center items-center ml-4">
                             <HardDriveDownloadIcon size={15} />
                         </span>
-                        <span className="ml-2 text-sm tracking-wide truncate">
+                        <span className="ml-2 text-sm font-semibold tracking-wide truncate">
                             Sauvegarde
                         </span>
                     </Link>

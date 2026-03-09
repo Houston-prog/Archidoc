@@ -137,7 +137,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/journal', [JournalController::class, 'journalview'])->name('journal');
+    Route::get('/journal', [JournalController::class, 'index'])->name('journal');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

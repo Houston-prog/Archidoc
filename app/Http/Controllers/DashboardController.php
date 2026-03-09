@@ -57,7 +57,7 @@ class DashboardController extends Controller
                 'totalUsers' => $totalUsers,
                 'completeDossiersCount' => $completeDossiersCount,
                 'incompleteDossiersCount' => $totalUsers - $completeDossiersCount,
-                'complianceRate' => $totalUsers > 0 ? round(($completeDossiersCount / $totalUsers) * 100) : 0,
+                'complianceRate' => $totalUsers > 0 ? round((($totalUsers - $completeDossiersCount) / $totalUsers) * 100) : 0,
             ],
             'worstDossiers' => $usersNeedingAttention->sortBy('percentage')->take(5)->values(),
             'recentUsers' => Docrh::latest()->take(5)->get()->map(fn($user) => [

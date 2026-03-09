@@ -5,8 +5,16 @@ import DataTable from 'react-data-table-component';
 import styled from 'styled-components';
 import SidebarAdmin from './SidebarAdmin';
 import BreadcrumbSec from './BreadcrumbSec';
+import axios from 'axios';
 
 export default function Backup() {
+    const handleBackup = (type) => {
+        const url = type === 'app' ? '/backup/app' : '/backup/db';
+
+        axios.post(url)
+            .then(res => alert(res.data.message))
+            .catch(err => console.error(err))
+    };
 
   return (
     <AuthenticatedLayout>
@@ -25,6 +33,15 @@ export default function Backup() {
                                 Sauvegardes
                             </h2>
 
+                            <div className='flex gap-4'>
+                                <button onClick={() => handleBackup('app')}>
+                                    Savegarder l'application
+                                </button>
+
+                                <button onClick={() => handleBackup('db')}>
+                                    Savegarder l'application
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
